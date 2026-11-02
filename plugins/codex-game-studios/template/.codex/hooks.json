@@ -1,0 +1,108 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook SessionStart",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','SessionStart']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook PreToolUse",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','PreToolUse']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook PostToolUse",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','PostToolUse']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook PermissionRequest",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','PermissionRequest']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook PreCompact",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','PreCompact']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook Stop",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','Stop']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook SubagentStart",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','SubagentStart']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/studio.py\" hook SubagentStop",
+            "commandWindows": "python -c \"import os,runpy,subprocess,sys; p=subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip(); sys.argv=['studio.py','hook','SubagentStop']; runpy.run_path(os.path.join(p,'scripts','studio.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

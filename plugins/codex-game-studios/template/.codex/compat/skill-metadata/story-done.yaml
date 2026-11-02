@@ -1,0 +1,7 @@
+name: story-done
+description: "Closes a finished story: verifies each acceptance criterion, checks for design or ADR deviations and updates its status. Use when the user says a story is done, finished or ready to close."
+argument-hint: "[story-file-path] [--review full|lean|solo]"
+user-invocable: true
+disable-model-invocation: true
+allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, Agent, Bash(bash "*/.agents/skills/story-done/../../hooks/yaml-helper.sh" resolve_config *), Bash(bash .codex/scripts/story-facts.sh *), Bash(bash .codex/scripts/story-status.sh*), Bash(bash .codex/scripts/adr-status.sh *), Bash(bash .codex/scripts/md-section.sh *), Bash(bash .codex/scripts/review-receipts.sh check *), Bash(bash .codex/scripts/session-state.sh *), Bash(git status --porcelain*)
+model: sonnet

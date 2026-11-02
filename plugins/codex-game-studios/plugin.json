@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "codex-game-studios",
+  "version": "0.1.3",
+  "description": "74 game development workflows, 49 specialist roles, engine tooling and lifecycle checks for local Codex projects.",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Codex Game Studios",
+        "shortDescription": "Complete game studio workflows",
+        "longDescription": "74 game development workflows, 49 specialist roles, engine tooling and lifecycle checks for local Codex projects.",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": "Set up this game project with Codex Game Studios.",
+        "logo": "./assets/icon.svg",
+        "composerIcon": "./assets/icon.svg",
+        "developerName": "Codex Game Studios contributors"
+      },
+      "hooks": "./hooks/hooks.json",
+      "onboardingSkill": "./skills/studio-setup/SKILL.md"
+    }
+  }
+}

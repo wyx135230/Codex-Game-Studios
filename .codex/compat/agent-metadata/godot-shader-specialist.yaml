@@ -1,0 +1,5 @@
+name: godot-shader-specialist
+description: "Godot rendering customization — shading language, visual shaders, material setup, particle shaders, post-processing."
+tools: Read, Glob, Grep, Write, Edit, Bash
+model: sonnet
+maxTurns: 20

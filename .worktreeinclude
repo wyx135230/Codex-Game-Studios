@@ -1,0 +1,4 @@
+# Historical worktree copy list; Codex does not load this file automatically.
+# Copy authorized local studio preferences explicitly when preparing a worktree.
+project.local.yaml
+AGENTS.override.md

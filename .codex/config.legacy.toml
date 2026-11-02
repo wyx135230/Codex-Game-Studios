@@ -1,0 +1,202 @@
+# Compatible with Codex CLI 0.125 role registration.
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 4
+
+[agents."accessibility-specialist"]
+description = "Accessibility standards and assistive features \u2014 remapping, text scaling, colorblind modes, screen reader support."
+config_file = "roles/accessibility-specialist.toml"
+
+[agents."ai-programmer"]
+description = "Implements game AI \u2014 behavior trees, state machines, pathfinding, perception, decision-making, NPC and enemy behavior, AI debugging."
+config_file = "roles/ai-programmer.toml"
+
+[agents."analytics-engineer"]
+description = "Telemetry and analytics \u2014 event tracking, player behavior, A/B test frameworks, dashboard specification, data pipelines."
+config_file = "roles/analytics-engineer.toml"
+
+[agents."art-director"]
+description = "Owns visual identity \u2014 style guides, art bible, asset standards, color palettes, UI visual direction."
+config_file = "roles/art-director.toml"
+
+[agents."audio-director"]
+description = "Owns sonic identity \u2014 music direction, sound palette, audio implementation strategy, mix balance."
+config_file = "roles/audio-director.toml"
+
+[agents."community-manager"]
+description = "Player-facing communication \u2014 patch notes, social posts, community updates, feedback collection, player bug triage, crisis communication."
+config_file = "roles/community-manager.toml"
+
+[agents."creative-director"]
+description = "Highest creative authority \u2014 vision, tone, aesthetic direction. Use when a decision affects game identity or department leads deadlock."
+config_file = "roles/creative-director.toml"
+
+[agents."devops-engineer"]
+description = "Build pipelines, CI/CD configuration, version control workflow, branching strategy, automated test pipelines, deployment infrastructure."
+config_file = "roles/devops-engineer.toml"
+
+[agents."economy-designer"]
+description = "Resource economies \u2014 loot tables, sink/faucet analysis, progression curve calibration, economic balance."
+config_file = "roles/economy-designer.toml"
+
+[agents."engine-programmer"]
+description = "Core engine systems \u2014 rendering pipeline, physics, memory, resource loading, scene management, performance-critical framework code."
+config_file = "roles/engine-programmer.toml"
+
+[agents."game-designer"]
+description = "Mechanical and systems design \u2014 core loops, progression, combat, economy, player-facing rules. Mechanics-level questions."
+config_file = "roles/game-designer.toml"
+
+[agents."gameplay-programmer"]
+description = "Implements designed mechanics as code \u2014 player systems, combat, interactive features, gameplay system code."
+config_file = "roles/gameplay-programmer.toml"
+
+[agents."godot-csharp-specialist"]
+description = "Godot 4 C# quality \u2014 .NET patterns, attribute-based exports, signal delegates, async patterns, type-safe node access."
+config_file = "roles/godot-csharp-specialist.toml"
+
+[agents."godot-gdextension-specialist"]
+description = "Native code integration with Godot \u2014 GDExtension API, godot-cpp and godot-rust bindings, custom node types, the native boundary."
+config_file = "roles/godot-gdextension-specialist.toml"
+
+[agents."godot-gdscript-specialist"]
+description = "GDScript code quality \u2014 static typing enforcement, signal architecture, coroutine patterns, GDScript idioms, typed and performant."
+config_file = "roles/godot-gdscript-specialist.toml"
+
+[agents."godot-shader-specialist"]
+description = "Godot rendering customization \u2014 shading language, visual shaders, material setup, particle shaders, post-processing."
+config_file = "roles/godot-shader-specialist.toml"
+
+[agents."godot-specialist"]
+description = "Authority on Godot-specific patterns and APIs \u2014 node/scene architecture, signals, resources; guides GDScript vs C# vs GDExtension."
+config_file = "roles/godot-specialist.toml"
+
+[agents."lead-programmer"]
+description = "Lead programmer \u2014 code-level architecture, coding standards, code review, API design, refactoring strategy, assigning work to specialist programmers."
+config_file = "roles/lead-programmer.toml"
+
+[agents."level-designer"]
+description = "Spatial design for levels and areas \u2014 encounter layouts, pacing, difficulty, layout planning, environmental storytelling."
+config_file = "roles/level-designer.toml"
+
+[agents."live-ops-designer"]
+description = "Post-launch content \u2014 seasonal events, battle passes, content cadence, retention, engagement analytics. Keeps the game fresh."
+config_file = "roles/live-ops-designer.toml"
+
+[agents."localization-lead"]
+description = "Internationalization architecture \u2014 i18n system design, string extraction workflows, locale testing, locale-specific issues, translation pipeline."
+config_file = "roles/localization-lead.toml"
+
+[agents."narrative-director"]
+description = "Story architecture, world-building, character design, dialogue strategy. Narrative structure and direction rather than writing individual lines."
+config_file = "roles/narrative-director.toml"
+
+[agents."network-programmer"]
+description = "Multiplayer networking \u2014 state replication, lag compensation, matchmaking, network protocol, netcode and bandwidth optimization."
+config_file = "roles/network-programmer.toml"
+
+[agents."performance-analyst"]
+description = "Performance analyst \u2014 profiling, bottlenecks, memory analysis, frame time investigation, recommends optimizations, tracks metrics over time."
+config_file = "roles/performance-analyst.toml"
+
+[agents."producer"]
+description = "Production concerns \u2014 sprint planning, milestone tracking, risk, scope, cross-department coordination when multiple departments must synchronize."
+config_file = "roles/producer.toml"
+
+[agents."prototyper"]
+description = "Throwaway builds \u2014 concept prototypes after brainstorm to test an idea is fun before GDDs; vertical slices pre-production. Speed over standards."
+config_file = "roles/prototyper.toml"
+
+[agents."qa-lead"]
+description = "Test strategy and process \u2014 test plan creation, bug severity assessment, regression planning, release quality gates, readiness evaluation."
+config_file = "roles/qa-lead.toml"
+
+[agents."qa-tester"]
+description = "Writes test cases, bug reports, and checklists \u2014 test case generation, regression checklist creation, execution documentation."
+config_file = "roles/qa-tester.toml"
+
+[agents."release-manager"]
+description = "Release pipeline \u2014 certification checklists, store submissions and page prep, platform requirements, version numbering, release-day coordination."
+config_file = "roles/release-manager.toml"
+
+[agents."security-engineer"]
+description = "Protects against cheating, exploits, breaches \u2014 anti-cheat measures, secure save data and network comms, player privacy compliance."
+config_file = "roles/security-engineer.toml"
+
+[agents."sound-designer"]
+description = "SFX specifications and spec sheets \u2014 audio event documentation, mixing parameters, sound category definitions."
+config_file = "roles/sound-designer.toml"
+
+[agents."systems-designer"]
+description = "Detailed subsystem mechanics \u2014 combat formulas, progression curves, crafting recipes, status effect interactions, mathematical modeling of a mechanic."
+config_file = "roles/systems-designer.toml"
+
+[agents."technical-artist"]
+description = "Technical artist bridging art and engineering \u2014 shaders, VFX, rendering optimization, art pipeline tools, art-to-engine issues."
+config_file = "roles/technical-artist.toml"
+
+[agents."technical-director"]
+description = "High-level technical decisions \u2014 engine architecture, technology choices, performance strategy, technical risk, cross-system conflicts."
+config_file = "roles/technical-director.toml"
+
+[agents."tools-programmer"]
+description = "Internal dev tools \u2014 editor extensions, content authoring tools, debug utilities, pipeline automation, editor workflow."
+config_file = "roles/tools-programmer.toml"
+
+[agents."ue-blueprint-specialist"]
+description = "Blueprint architecture and Blueprint/C++ boundary \u2014 optimization, maintainable graphs. Prevents Blueprint spaghetti, enforces clean BP patterns."
+config_file = "roles/ue-blueprint-specialist.toml"
+
+[agents."ue-gas-specialist"]
+description = "Gameplay Ability System \u2014 abilities, gameplay effects, attribute sets, tags, ability tasks, prediction. Prevents common GAS anti-patterns."
+config_file = "roles/ue-gas-specialist.toml"
+
+[agents."ue-replication-specialist"]
+description = "Unreal networking \u2014 property replication, RPCs, client prediction, relevancy, net serialization, bandwidth. Server-authoritative architecture."
+config_file = "roles/ue-replication-specialist.toml"
+
+[agents."ue-umg-specialist"]
+description = "Unreal UI implementation \u2014 UMG widget hierarchy, data binding, CommonUI input routing, widget styling, UI optimization."
+config_file = "roles/ue-umg-specialist.toml"
+
+[agents."ui-programmer"]
+description = "Implements user interface systems \u2014 menus, HUDs, inventory screens, dialogue boxes, UI framework code, screen flow."
+config_file = "roles/ui-programmer.toml"
+
+[agents."unity-addressables-specialist"]
+description = "Unity asset management \u2014 Addressable groups, loading/unloading, content catalogs, remote delivery, asset bundle optimization, fast load times."
+config_file = "roles/unity-addressables-specialist.toml"
+
+[agents."unity-dots-specialist"]
+description = "Unity Data-Oriented Technology Stack \u2014 Entity Component System, Jobs, Burst compiler optimization, hybrid renderer, correct ECS patterns."
+config_file = "roles/unity-dots-specialist.toml"
+
+[agents."unity-shader-specialist"]
+description = "Unity rendering \u2014 Shader Graph, custom HLSL, VFX Graph, render pipeline customization (URP/HDRP), post-processing within performance budgets."
+config_file = "roles/unity-shader-specialist.toml"
+
+[agents."unity-specialist"]
+description = "Authority on Unity-specific patterns and APIs \u2014 guides MonoBehaviour vs DOTS/ECS, Unity subsystems including Addressables and Input System."
+config_file = "roles/unity-specialist.toml"
+
+[agents."unity-ui-specialist"]
+description = "Unity UI implementation \u2014 UI Toolkit (UXML/USS), UGUI Canvas, data binding, runtime UI performance, cross-platform adaptation."
+config_file = "roles/unity-ui-specialist.toml"
+
+[agents."unreal-specialist"]
+description = "Authority on Unreal-specific patterns and APIs \u2014 guides Blueprint vs C++, UE subsystems (GAS, Enhanced Input, Niagara, etc.)."
+config_file = "roles/unreal-specialist.toml"
+
+[agents."ux-designer"]
+description = "User experience flows, interaction design, information architecture \u2014 user flow mapping, interaction pattern design, onboarding, accessibility requirements."
+config_file = "roles/ux-designer.toml"
+
+[agents."world-builder"]
+description = "World builder for lore \u2014 factions, cultures, history, geography, ecology, world rules. Faction design, lore consistency checks."
+config_file = "roles/world-builder.toml"
+
+[agents."writer"]
+description = "Writer of player-facing text \u2014 dialogue, lore entries, item and ability descriptions, environmental text."
+config_file = "roles/writer.toml"

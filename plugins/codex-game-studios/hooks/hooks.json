@@ -1,0 +1,108 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" SessionStart",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','SessionStart']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" PreToolUse",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','PreToolUse']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" PostToolUse",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','PostToolUse']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" PermissionRequest",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','PermissionRequest']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" PreCompact",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','PreCompact']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" Stop",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','Stop']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" SubagentStart",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','SubagentStart']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/plugin_hook.py\" SubagentStop",
+            "commandWindows": "python -c \"import os,runpy,sys; sys.argv=['plugin_hook.py','SubagentStop']; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','plugin_hook.py'),run_name='__main__')\"",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

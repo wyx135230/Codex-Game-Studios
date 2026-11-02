@@ -1,0 +1,5 @@
+name: security-engineer
+description: "Protects against cheating, exploits, breaches — anti-cheat measures, secure save data and network comms, player privacy compliance."
+tools: Read, Glob, Grep, Write, Edit, Bash
+model: inherit
+maxTurns: 20

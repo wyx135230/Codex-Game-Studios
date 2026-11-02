@@ -1,0 +1,7 @@
+name: launch-checklist
+description: "Launch readiness across every department: code, content, store, marketing, community, infrastructure, legal, go/no-go sign-offs."
+argument-hint: "[launch-date or 'dry-run']"
+user-invocable: true
+disable-model-invocation: true
+allowed-tools: Read, Glob, Grep, Write, AskUserQuestion, Bash(bash "*/.agents/skills/launch-checklist/../../hooks/yaml-helper.sh" resolve_config *)
+model: sonnet
