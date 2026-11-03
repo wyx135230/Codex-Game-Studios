@@ -1,6 +1,6 @@
 {
   "name": "codex-game-studios",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "74 game development workflows, 49 specialist roles, engine tooling and lifecycle checks for local Codex projects.",
   "skills": "./skills/",
   "interface": {

@@ -29,8 +29,8 @@ def main():
         overlay = json.loads(z.read('.codex-plugin/plugin.json'))
         check('manifest identity', manifest['name'] == overlay['name'] == 'codex-game-studios')
         check('listing subtitle', len(manifest['extensions']['com.openai']['interface']['shortDescription']) <= 30)
-        missing = [entry['target'] for entry in json.loads(z.read('template/docs/migration-manifest.json'))
-                   if 'template/' + entry['target'] not in names]
+        missing = [entry['target'] for entry in json.loads(z.read('framework/docs/migration-manifest.json'))
+                   if json.loads(z.read('framework/resource-map.json'))[entry['target']] not in names]
         check('all imported files bundled', not missing, str(missing))
         check('no project secrets or active session data', not any(
             Path(p).name.startswith('.env') or p.endswith('project.local.yaml') or p.endswith('session-state/active.md') for p in names))
@@ -45,14 +45,12 @@ def main():
         check('real package install', obj['status'] == 'installed')
         check('real package reinstall', install(home, unpacked)['status'] == 'already-installed')
         installed = Path(obj['path'])
-        setup = initialize(game, installed / 'template')
-        check('workspace initialization', setup['initialized'] and (game / 'STUDIO.md').exists())
-        proc = subprocess.run([sys.executable, str(game / 'scripts/studio.py'), 'doctor'], cwd=game,
+        setup = initialize(game, installed / 'framework')
+        check('workspace initialization', setup['initialized'] and (game / 'AGENTS.md').exists() and not (game / '.agents').exists())
+        proc = subprocess.run([sys.executable, str(installed / 'scripts/studio.py'), 'doctor'], cwd=game,
                               capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30)
         check('installed workspace doctor', proc.returncode == 0, proc.stdout + proc.stderr)
-        proc = subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-v'], cwd=game,
-                              capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30)
-        check('installed workspace tests', proc.returncode == 0, proc.stdout + proc.stderr)
+        check('minimal initial project footprint', {p.relative_to(game).as_posix() for p in game.rglob('*') if p.is_file()} == {'AGENTS.md', 'project.yaml', '.studio/installation.json'})
         payload = {'cwd': str(game), 'session_id': 'plugin-verification', 'tool_name': 'exec_command',
                    'tool_input': {'cmd': 'git status --short'}}
         proc = subprocess.run([sys.executable, str(installed / 'scripts/plugin_hook.py'), 'PreToolUse'],
@@ -85,6 +83,7 @@ def main():
                                   cwd=base, env=dict(os.environ, CODEX_HOME=str(native_home)),
                                   capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30)
             check('native distribution marketplace registration', proc.returncode == 0, proc.stdout + proc.stderr)
+        (game / 'src').mkdir(exist_ok=True)
         (game / 'src/player.gd').write_text('user game content\n', encoding='utf-8')
         check('real package uninstall', uninstall(home)['status'] == 'uninstalled')
         check('game survives uninstall', (game / 'src/player.gd').read_text() == 'user game content\n')

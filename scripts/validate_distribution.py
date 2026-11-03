@@ -77,8 +77,11 @@ def validate_plugin(archive):
                 require(isinstance(implicit, bool), 'invocation policy must be boolean')
         require(not ({'install.ps1', 'uninstall.ps1', 'scripts/plugin_manager.py'} & names),
                 'native distribution should not require a custom installer')
-        manifest = json.loads(z.read('template/docs/migration-manifest.json'))
-        require(all('template/' + row['target'] in names for row in manifest), 'missing migrated functionality')
+        manifest = json.loads(z.read('framework/docs/migration-manifest.json'))
+        resource_map = json.loads(z.read('framework/resource-map.json'))
+        require(all(resource_map.get(row['target']) in names for row in manifest), 'missing migrated functionality')
+        require(not any(n.startswith(('template/', 'framework/.agents/skills/')) for n in names), 'duplicated skill library')
+        require(all('plugin entrypoint' not in z.read(n).decode('utf-8') for n in skills), 'expected full installed workflows')
         return {'version': obj['version'], 'skills': len(skills), 'source_files': len(manifest), 'members': len(names)}
 
 

@@ -3,20 +3,107 @@ name: prototype
 description: "Concept prototype before GDDs — throwaway HTML, Engine or Paper build, PROCEED/PIVOT/KILL/NOT ASSESSED. After /brainstorm and /setup-engine."
 ---
 
-# prototype — plugin entrypoint
+## Installed plugin binding
 
-The complete workflow and references are bundled in `template/.agents/skills/prototype/`.
-Locate this plugin root from the loaded SKILL.md path (two parent directories above `skills/`).
-Use that absolute path in commands; do not assume the shell expands a PLUGIN_ROOT variable.
-First choose the current game workspace from the user's task. If no workspace is available,
-ask for its path. Run `python "<plugin-root>/scripts/plugin_workspace.py" init --root "<workspace>"`.
-This fills missing template files and preserves existing ones. Inspect any preserved conflicts.
-If the result says `initialized: true`, run `python scripts/studio.py hook SessionStart` from
-the workspace once, since the native start event preceded initialization.
-Read `<workspace>/STUDIO.md`, `<workspace>/.codex/docs/runtime.md`, applicable AGENTS.md and rules.
-Then read `<workspace>/.agents/skills/prototype/SKILL.md` and follow ALL phases and referenced
-files with the user's original arguments, from the workspace root. Do not invoke this wrapper recursively.
-Hooks come from the plugin. On clients without hooks, use explicit lifecycle commands.
-Roles are in workspace `.codex/agents/*.toml` (legacy registered role configs are also bundled).
-If a named role is unavailable, give its full `.md` role contract to a generic child agent;
-if no child tools exist, execute sequentially and disclose that limitation.
+Resolve this installed plugin root from this skill path. Read `<plugin-root>/framework/PLUGIN_RUNTIME.md`
+and run its minimal workspace binding before the workflow below. Execute from the game workspace,
+read references from this installed skill directory, and keep all framework files in the plugin.
+This skill contains the full workflow; do not create or invoke a workspace skill copy.
+
+Read `<plugin-root>/framework/.codex/docs/runtime.md` before executing this workflow. Arguments are the text following the skill invocation; substitute them where `$ARGUMENTS` appears.
+
+Before proceeding, run this command from the repository root and use its output:
+
+```bash
+bash "<plugin-root>/framework/.codex/hooks/yaml-helper.sh" resolve_config --keys review_mode,automation,workflow
+```
+
+Resolved above — use as-is; `--review` overrides `review_mode` for this run. No
+block → defaults in `<plugin-root>/framework/.codex/docs/config-resolution.md`.
+
+# Prototype
+
+## Purpose
+
+This is the **concept prototype** — a fast, throwaway build that answers one question:
+*"Is this core idea actually fun to interact with?"*
+
+**Default use** — run right after `/brainstorm` and `/setup-engine`, before writing
+GDDs or architecture docs. Its verdict determines whether the concept is worth the
+investment of full design documentation.
+
+**Mid-production?** You can also run this at any stage to test a specific mechanic,
+design change, or technical question. Pass `--spike` to activate spike mode: a
+lightweight ~4-hour build with no GDD prerequisites and no phase gate implications.
+
+**Already have GDDs and architecture complete?** To validate the full game loop
+before committing to Production, run `/vertical-slice` instead.
+
+---
+
+## Phase 1: Define the Question
+
+**Read `references/1-question.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 2: Load Concept Context
+
+**Read `references/2-load-context.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 3: Choose the Prototype Path
+
+**Read `references/3-choose-path.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 4: Plan the Prototype
+
+**Read `references/4-plan.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 5: Implement
+
+**Read `references/5-implement.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 6: Playtest Debrief
+
+**Read `references/6-debrief.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 7: Generate Prototype Report
+
+**Read `references/7-report.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 8: Creative Director Review
+
+**Read `references/8-cd-review.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 9: Summary and Next Steps
+
+**Read `references/9-summary.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Spike Mode
+
+**Triggered by:** `--spike` flag OR "Mid-production spike" entry choice in Phase 1.
+
+**Read `references/spike-mode.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+### Important Constraints
+
+- Prototype code must NEVER import from production source files
+- Production code must NEVER import from prototype directories
+- If the recommendation is PROCEED, production implementation is written from
+  scratch — prototype code is never refactored into production
+- Total effort is hard-capped at 1 day (concept prototypes test one mechanic)
+- Test ONE mechanic — if scope grows, stop and simplify the question
+- No polish. No menus, no game over, no music, no UI unless it IS the mechanic
+- If stuck after 2 hours of engine iteration, reframe the question or switch paths
+- **3 PIVOT iterations → force a KILL decision.** If this is the third time the
+  same concept has produced a PIVOT verdict, the concept likely doesn't work.
+  Ask: "Is this the right idea, or am I in the sunk cost trap?" A new concept
+  prototyped fresh will almost always beat a fourth iteration of a struggling one.
+- Building 2-3 different concept variants and picking the best one is a healthier
+  strategy than iterating one concept to death. Natural selection between prototypes
+  beats willpower.
+- **Networked/multiplayer games:** A local prototype cannot validate the feel of a
+  networked mechanic. Latency fundamentally changes how combat, movement, and
+  prediction feel — a prototype running at 0ms local will feel entirely different at
+  80ms network delay. Use a local prototype to validate that the mechanic is
+  *interesting*. Do not use it as evidence that it *feels good* under real network
+  conditions. Network feel requires real peers or simulated latency (e.g., throttle
+  tools, network condition simulators).

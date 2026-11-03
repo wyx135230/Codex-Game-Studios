@@ -1,0 +1,389 @@
+{
+  "timestamp_utc": "2026-11-03T08:39:10.039242+00:00",
+  "checks": [
+    {
+      "name": "runtime and inventory tests",
+      "passed": true,
+      "exit": 0,
+      "output": "sts.test_marketplace_matches_upload_package) ... ok\ntest_marketplace_zip_is_rejected_as_plugin_upload (test_distribution.DistributionTests.test_marketplace_zip_is_rejected_as_plugin_upload) ... ok\ntest_missing_icon_is_detected (test_distribution.DistributionTests.test_missing_icon_is_detected) ... ok\ntest_native_plugin_is_complete (test_distribution.DistributionTests.test_native_plugin_is_complete) ... ok\ntest_existing_name_conflict_preserved (test_plugin.InstallerTests.test_existing_name_conflict_preserved) ... ok\ntest_modified_config_uninstall_has_no_partial_mutation (test_plugin.InstallerTests.test_modified_config_uninstall_has_no_partial_mutation) ... ok\ntest_refuse_unowned_directory (test_plugin.InstallerTests.test_refuse_unowned_directory) ... ok\ntest_roundtrip_preserves_other_plugin_config_and_game_data (test_plugin.InstallerTests.test_roundtrip_preserves_other_plugin_config_and_game_data) ... ok\ntest_uninstall_after_native_config_reserialization (test_plugin.InstallerTests.test_uninstall_after_native_config_reserialization) ... ok\ntest_cannot_initialize_inside_template (test_plugin.WorkspaceTests.test_cannot_initialize_inside_template) ... ok\ntest_initialize_idempotent_and_preserves_existing_files (test_plugin.WorkspaceTests.test_initialize_idempotent_and_preserves_existing_files) ... ok\ntest_preserve_foreign_workspace_ledger (test_plugin.WorkspaceTests.test_preserve_foreign_workspace_ledger) ... ok\ntest_setup_adds_small_managed_bridge_to_existing_instructions (test_plugin.WorkspaceTests.test_setup_adds_small_managed_bridge_to_existing_instructions) ... ok\ntest_setup_keeps_framework_in_plugin_and_creates_only_three_project_files (test_plugin.WorkspaceTests.test_setup_keeps_framework_in_plugin_and_creates_only_three_project_files) ... ok\ntest_cleanup_removes_only_unchanged_owned_framework_and_keeps_game_data (test_plugin_resources.LegacyCleanupTests.test_cleanup_removes_only_unchanged_owned_framework_and_keeps_game_data) ... ok\ntest_override_instructions_receive_bridge_and_survive_rebinding (test_plugin_resources.LegacyCleanupTests.test_override_instructions_receive_bridge_and_survive_rebinding) ... ok\ntest_full_skill_body_and_references_live_only_in_plugin (test_plugin_resources.ResourceWorkspaceTests.test_full_skill_body_and_references_live_only_in_plugin) ... ok\ntest_packaged_native_hook_denies_command_from_nested_workspace (test_plugin_resources.ResourceWorkspaceTests.test_packaged_native_hook_denies_command_from_nested_workspace) ... ok\ntest_packaged_shell_scripts_are_valid_bash (test_plugin_resources.ResourceWorkspaceTests.test_packaged_shell_scripts_are_valid_bash) ... ok\ntest_relocated_plugin_runs_helpers_without_copying_or_mutating_framework (test_plugin_resources.ResourceWorkspaceTests.test_relocated_plugin_runs_helpers_without_copying_or_mutating_framework) ... ok\ntest_runpy_hook_entry_rebinds_without_import_path_or_cache_writes (test_plugin_resources.ResourceWorkspaceTests.test_runpy_hook_entry_rebinds_without_import_path_or_cache_writes) ... ok\ntest_all_patch_files_validated (test_runtime.HookTests.test_all_patch_files_validated) ... ok\ntest_cli_denial_uses_native_json (test_runtime.HookTests.test_cli_denial_uses_native_json) ... ok\ntest_cli_post_failure_uses_native_feedback (test_runtime.HookTests.test_cli_post_failure_uses_native_feedback) ... ok\ntest_context_forwarded (test_runtime.HookTests.test_context_forwarded) ... ok\ntest_exec_command_normalized_and_denial_forwarded (test_runtime.HookTests.test_exec_command_normalized_and_denial_forwarded) ... ok\ntest_sensitive_files (test_runtime.HookTests.test_sensitive_files) ... ok\ntest_shell_policy (test_runtime.HookTests.test_shell_policy) ... ok\ntest_all_source_files_accounted_for (test_runtime.InventoryTests.test_all_source_files_accounted_for) ... ok\ntest_hooks_are_native_supported_events (test_runtime.InventoryTests.test_hooks_are_native_supported_events) ... ok\ntest_native_roles_match_all_original_roles (test_runtime.InventoryTests.test_native_roles_match_all_original_roles) ... ok\ntest_native_skills_have_no_implicit_shell_injection (test_runtime.InventoryTests.test_native_skills_have_no_implicit_shell_injection) ... ok\ntest_hunk_anchor_selects_correct_duplicate_context (test_runtime.PatchTests.test_hunk_anchor_selects_correct_duplicate_context) ... ok\ntest_invalid_patch_fails (test_runtime.PatchTests.test_invalid_patch_fails) ... ok\ntest_move_checks_source_and_destination (test_runtime.PatchTests.test_move_checks_source_and_destination) ... ok\ntest_multifile_add_update_delete (test_runtime.PatchTests.test_multifile_add_update_delete) ... ok\ntest_post_reads_actual_content (test_runtime.PatchTests.test_post_reads_actual_content) ... ok\ntest_reject_escape (test_runtime.PatchTests.test_reject_escape) ... ok\ntest_reject_symlink_escape (test_runtime.PatchTests.test_reject_symlink_escape) ... skipped 'symlink creation unavailable'\n\n----------------------------------------------------------------------\nRan 39 tests in 26.304s\n\nOK (skipped=1)\n"
+    },
+    {
+      "name": "syntax .codex/hooks/detect-gaps.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/log-agent-stop.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/log-agent.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/log-instructions.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/notify.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/pre-compact.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/session-start.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/session-stop.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/update-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-agent-artifact.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-assets.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-commit.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-push.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-read.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-registry.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-skill-change.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/validate-write.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/hooks/yaml-helper.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/adr-dep-graph.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/adr-status.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/agent-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/artifact-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/asset-scan.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/bug-stats.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/code-markers.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/compat-inventory.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/config-set.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/content-count.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/debt-register.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/flaky-stats.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/gdd-structure-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/hook-input.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/inputs-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/md-section.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/migrate-v1-config.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/plan-math.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/project-coherence.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/project-state.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/read-guard.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/registry.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/review-receipts.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/review-scope.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/rotate-session-state.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/session-state.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/set-stage.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/skill-lint.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/story-facts.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/story-status.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/test-run.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/test-scaffold.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/scripts/write-guard.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "syntax .codex/statusline.sh",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "name": "helper project-state.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "root\tE:/Users/LENOVO/Documents/ChatGPT/Codex-Game-Studios\t-\nengine\t-\tunset\ncode_root\tsrc\tdetected\nsource_files\t0\tsrc\nconcept\t-\tabsent\nsystems_index\t-\tabsent\ngdd_files\t0\tdesign/gdd/*.md\nadr\t0\tdocs/architecture/adr-*.md\nstory\t0\tproduction/epics/**/story-*.md\nprototype\t0\tprototypes/*/\nsprint\t0\tproduction/sprints/*.md\nmilestone\t0\tproduction/milestones/*.md\norigin_url\thttps://github.com/wyx135230/Codex-Game-Studios.git\t.git/config\nstage_yaml\t-\tproject.yaml\nstage_txt\t-\tabsent\nstage\t-\tunset\nphase\t-\tunset\nphase_inferred\tconcept\tnothing\n"
+    },
+    {
+      "name": "helper skill-lint.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "gate-check\tnext_phrases=2/1\ncheck6\tteam-release\tcontext_fork=no\tphases=1\th2=8\ncheck7\tteam-release\thint=absent\targs_section=-\nskill\tteam-ui\tfiles=1\tlines=307\ncheck1\tteam-ui\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\tteam-ui\tphases=1\th2=9\th2_total=9\ncheck3\tteam-ui\tverdicts=CONCERNS:1,APPROVED:1,BLOCKED:5,COMPLETE:3\tassessment_words=review\ncheck4\tteam-ui\tmay_i_write=1\tbefore_writing=2\tapproval=1\task_write_lines=7\twrite_tools=-\ncheck5\tteam-ui\tlast_section=Next Steps\tskills_named=ux-review,code-review,team-polish\tnext_phrases=1/1\ncheck6\tteam-ui\tcontext_fork=no\tphases=1\th2=9\ncheck7\tteam-ui\thint=absent\targs_section=-\nskill\ttech-debt\tfiles=1\tlines=220\ncheck1\ttech-debt\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\ttech-debt\tphases=6\th2=6\th2_total=6\ncheck3\ttech-debt\tverdicts=FAIL:1,BLOCKED:3,COMPLETE:6\tassessment_words=-\ncheck4\ttech-debt\tmay_i_write=2\tbefore_writing=0\tapproval=1\task_write_lines=2\twrite_tools=-\ncheck5\ttech-debt\tlast_section=Phase 3: Next Steps\tskills_named=sprint-plan,tech-debt,story-done\tnext_phrases=1/1\ncheck6\ttech-debt\tcontext_fork=no\tphases=6\th2=6\ncheck7\ttech-debt\thint=absent\targs_section=Phase 1: Parse Subcommand@22\nskill\ttest-evidence-review\tfiles=1\tlines=362\ncheck1\ttest-evidence-review\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\ttest-evidence-review\tphases=7\th2=8\th2_total=8\ncheck3\ttest-evidence-review\tverdicts=CONCERNS:1,COMPLETE:1\tassessment_words=review\ncheck4\ttest-evidence-review\tmay_i_write=1\tbefore_writing=2\tapproval=0\task_write_lines=2\twrite_tools=-\ncheck5\ttest-evidence-review\tlast_section=Collaborative Protocol\tskills_named=-\tnext_phrases=0/0\ncheck6\ttest-evidence-review\tcontext_fork=no\tphases=7\th2=8\ncheck7\ttest-evidence-review\thint=absent\targs_section=1. Parse Arguments@52\nskill\ttest-flakiness\tfiles=1\tlines=250\ncheck1\ttest-flakiness\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\ttest-flakiness\tphases=7\th2=8\th2_total=8\ncheck3\ttest-flakiness\tverdicts=PASS:1,FAIL:1,BLOCKED:1,COMPLETE:1\tassessment_words=-\ncheck4\ttest-flakiness\tmay_i_write=1\tbefore_writing=1\tapproval=1\task_write_lines=2\twrite_tools=-\ncheck5\ttest-flakiness\tlast_section=Collaborative Protocol\tskills_named=-\tnext_phrases=0/0\ncheck6\ttest-flakiness\tcontext_fork=no\tphases=7\th2=8\ncheck7\ttest-flakiness\thint=absent\targs_section=1. Parse Arguments@37\nskill\ttest-helpers\tfiles=1\tlines=475\ncheck1\ttest-helpers\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\ttest-helpers\tphases=6\th2=9\th2_total=9\ncheck3\ttest-helpers\tverdicts=COMPLETE:1\tassessment_words=-\ncheck4\ttest-helpers\tmay_i_write=1\tbefore_writing=1\tapproval=0\task_write_lines=2\twrite_tools=-\ncheck5\ttest-helpers\tlast_section=Next Steps\tskills_named=test-setup,dev-story,skill-test\tnext_phrases=1/1\ncheck6\ttest-helpers\tcontext_fork=no\tphases=6\th2=9\ncheck7\ttest-helpers\thint=absent\targs_section=1. Parse Arguments@75\nskill\ttest-setup\tfiles=7\tlines=665\ncheck1\ttest-setup\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\ttest-setup\tphases=6\th2=7\th2_total=13\ncheck3\ttest-setup\tverdicts=FAIL:1,COMPLETE:1\tassessment_words=-\ncheck4\ttest-setup\tmay_i_write=0\tbefore_writing=0\tapproval=3\task_write_lines=0\twrite_tools=-\ncheck5\ttest-setup\tlast_section=Collaborative Protocol\tskills_named=setup-engine\tnext_phrases=1/0\ncheck6\ttest-setup\tcontext_fork=no\tphases=6\th2=7\ncheck7\ttest-setup\thint=absent\targs_section=-\nskill\tux-design\tfiles=8\tlines=1378\ncheck1\tux-design\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\tux-design\tphases=8\th2=11\th2_total=15\ncheck3\tux-design\tverdicts=COMPLETE:1,HIGH:1\tassessment_words=-\ncheck4\tux-design\tmay_i_write=2\tbefore_writing=0\tapproval=9\task_write_lines=1\twrite_tools=-\ncheck5\tux-design\tlast_section=Recommended Next Steps\tskills_named=ux-review,ux-design,gate-check\tnext_phrases=5/2\ncheck6\tux-design\tcontext_fork=no\tphases=8\th2=11\ncheck7\tux-design\thint=absent\targs_section=1. Parse Arguments & Determine Mode@51\nskill\tux-review\tfiles=1\tlines=335\ncheck1\tux-review\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\tux-review\tphases=7\th2=8\th2_total=8\ncheck3\tux-review\tverdicts=APPROVED:6,COMPLIANT:2,NON-COMPLIANT:1\tassessment_words=readiness,validate\ncheck4\tux-review\tmay_i_write=0\tbefore_writing=0\tapproval=0\task_write_lines=0\twrite_tools=-\ncheck5\tux-review\tlast_section=Phase 5: Collaborative Protocol\tskills_named=team-ui,ux-design\tnext_phrases=0/0\ncheck6\tux-review\tcontext_fork=no\tphases=7\th2=8\ncheck7\tux-review\thint=absent\targs_section=Phase 1: Parse Arguments@49\nskill\tvertical-slice\tfiles=1\tlines=427\ncheck1\tvertical-slice\tfrontmatter=ok\tmissing=-\tname=match\ncheck2\tvertical-slice\tphases=8\th2=9\th2_total=9\ncheck3\tvertical-slice\tverdicts=CONCERNS:3,PROCEED:12,PIVOT:11,KILL:9\tassessment_words=-\ncheck4\tvertical-slice\tmay_i_write=2\tbefore_writing=1\tapproval=0\task_write_lines=3\twrite_tools=-\ncheck5\tvertical-slice\tlast_section=Phase 8: Summary and Next Steps\tskills_named=create-stories,dev-story,create-epics,sprint-plan,gate-check,vertical-slice,design-system,architecture-decision,brainstorm,prototype\tnext_phrases=5/3\ncheck6\tvertical-slice\tcontext_fork=no\tphases=8\th2=9\ncheck7\tvertical-slice\thint=absent\targs_section=-\nchecked\t74 of 74\n"
+    },
+    {
+      "name": "helper agent-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "ts=qa-tester lines=40\n  markers: objective=1 output=2 sources=3 boundaries=2 recheck=0\nDELEGATION: team-qa .agents/skills/team-qa/SKILL.md:215 \"Phase 5: Manual QA Execution\" agents=qa-tester lines=58\n  markers: objective=1 output=6 sources=14 boundaries=3 recheck=0\nDELEGATION: team-qa .agents/skills/team-qa/SKILL.md:273 \"Phase 6: QA Sign-Off Report\" agents=qa-lead lines=83\n  markers: objective=3 output=10 sources=15 boundaries=8 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:27 \"Phase 0: Resolve Config\" agents=analytics-engineer,community-manager,devops-engineer,localization-lead,network-programmer,performance-analyst,producer,qa-lead,release-manager,security-engineer,writer lines=68\n  markers: objective=0 output=3 sources=4 boundaries=9 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:107 \"How to Delegate\" agents=analytics-engineer,community-manager,devops-engineer,localization-lead,network-programmer,performance-analyst,producer,qa-lead,release-manager,security-engineer lines=51\n  markers: objective=0 output=4 sources=11 boundaries=9 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:160 \"Phase 1: Release Planning\" agents=producer lines=7\n  markers: objective=0 output=1 sources=0 boundaries=0 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:167 \"Phase 2: Release Candidate\" agents=release-manager lines=7\n  markers: objective=0 output=1 sources=1 boundaries=3 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:174 \"Phase 3: Quality Gate (parallel)\" agents=devops-engineer,network-programmer,qa-lead,security-engineer lines=9\n  markers: objective=0 output=1 sources=0 boundaries=0 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:183 \"Phase 4: Localization, Performance, and Analytics\" agents=analytics-engineer,localization-lead,performance-analyst lines=7\n  markers: objective=0 output=1 sources=0 boundaries=0 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:190 \"Phase 5: Go/No-Go\" agents=community-manager,devops-engineer,network-programmer,producer,qa-lead,release-manager,security-engineer,technical-director lines=33\n  markers: objective=0 output=2 sources=1 boundaries=4 recheck=0\nDELEGATION: team-release .agents/skills/team-release/SKILL.md:223 \"Phase 6: Deployment (if GO)\" agents=community-manager,devops-engineer,release-manager lines=26\n  markers: objective=0 output=1 sources=0 boundaries=3 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:25 \"Phase 0: Resolve Config\" agents=accessibility-specialist,art-director,ui-programmer,ux-designer,writer lines=50\n  markers: objective=0 output=3 sources=4 boundaries=5 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:75 \"Team Composition\" agents=accessibility-specialist,art-director,ui-programmer,ux-designer lines=18\n  markers: objective=0 output=0 sources=2 boundaries=1 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:93 \"How to Delegate\" agents=accessibility-specialist,art-director,godot-specialist,ue-umg-specialist,ui-programmer,unity-ui-specialist,ux-designer lines=31\n  markers: objective=0 output=4 sources=10 boundaries=11 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:126 \"Phase 1a: Context Gathering\" agents=ui-programmer,ux-designer lines=48\n  markers: objective=0 output=4 sources=20 boundaries=4 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:174 \"Phase 1b: UX Spec Authoring\" agents=ux-designer lines=12\n  markers: objective=1 output=1 sources=0 boundaries=0 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:196 \"Phase 2: Visual Design\" agents=art-director lines=10\n  markers: objective=0 output=2 sources=0 boundaries=2 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:206 \"Phase 3: Implementation\" agents=ui-programmer,ux-designer lines=21\n  markers: objective=1 output=3 sources=5 boundaries=4 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:227 \"Phase 4: Review (parallel)\" agents=accessibility-specialist,art-director,ux-designer lines=9\n  markers: objective=0 output=3 sources=1 boundaries=3 recheck=0\nDELEGATION: team-ui .agents/skills/team-ui/SKILL.md:272 \"File Write Protocol\" agents=ui-programmer lines=18\n  markers: objective=0 output=0 sources=0 boundaries=0 recheck=0\nDELEGATION: tech-debt .agents/skills/tech-debt/SKILL.md:88 \"Phase 2B: Add Mode\" agents=lead-programmer lines=48\n  markers: objective=0 output=1 sources=1 boundaries=1 recheck=0\nDELEGATION: ux-design .agents/skills/ux-design/SKILL.md:133 \"8. Specialist Agent Routing\" agents=accessibility-specialist,art-director,game-designer,narrative-director,ui-programmer,ux-designer lines=22\n  markers: objective=0 output=1 sources=1 boundaries=1 recheck=0\nDELEGATION: vertical-slice .agents/skills/vertical-slice/SKILL.md:295 \"Phase 7: Creative Director Review\" agents=creative-director lines=37\n  markers: objective=1 output=4 sources=8 boundaries=0 recheck=0\n"
+    },
+    {
+      "name": "helper compat-inventory.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "e.sh:48\nFOUND: hooks hook-payload:tool_name .codex/hooks/validate-write.sh:48\nFOUND: hooks hook-payload:agent_type .codex/hooks/validate-write.sh:54\nFOUND: hooks hook-payload:transcript_path .codex/hooks/validate-write.sh:58\nFOUND: hooks hook-payload:tool_input .codex/hooks/validate-write.sh:64\nFOUND: hooks hook-payload:tool_input .codex/hooks/validate-write.sh:67\nFOUND: hooks hook-payload:tool_input .codex/hooks/validate-write.sh:69\nFOUND: hooks hook-payload:agent_type .codex/hooks/validate-write.sh:90\nFOUND: hooks hook-answer:additionalContext .codex/hooks/yaml-helper.sh:2069\nFOUND: hooks hook-answer:systemMessage .codex/hooks/yaml-helper.sh:2069\nFOUND: hooks hook-answer:permissionDecision .codex/hooks/yaml-helper.sh:2070\nFOUND: hooks hook-answer:additionalContext .codex/hooks/yaml-helper.sh:2081\nFOUND: hooks hook-answer:hookSpecificOutput .codex/hooks/yaml-helper.sh:2081\nFOUND: hooks hook-answer:systemMessage .codex/hooks/yaml-helper.sh:2081\nFOUND: hooks hook-answer:exit-2 .codex/hooks/yaml-helper.sh:2139\nFOUND: instructions rule-file .codex/rules/agent-memory.md:1\nFOUND: instructions rule-paths .codex/rules/agent-memory.md:2\nFOUND: subagents cc-path:.codex/agent-memory .codex/rules/agent-memory.md:3\nFOUND: subagents cc-path:.codex/agent-memory .codex/rules/agent-memory.md:18\nFOUND: instructions cc-path:.codex/rules .codex/rules/agent-memory.md:59\nFOUND: instructions rule-file .codex/rules/ai-code.md:1\nFOUND: instructions rule-paths .codex/rules/ai-code.md:2\nFOUND: instructions rule-file .codex/rules/data-files.md:1\nFOUND: instructions rule-paths .codex/rules/data-files.md:2\nFOUND: instructions rule-file .codex/rules/design-docs.md:1\nFOUND: instructions rule-paths .codex/rules/design-docs.md:2\nFOUND: instructions shared-path:.codex/docs .codex/rules/design-docs.md:9\nFOUND: instructions rule-file .codex/rules/engine-code.md:1\nFOUND: instructions rule-paths .codex/rules/engine-code.md:2\nFOUND: instructions rule-file .codex/rules/gameplay-code.md:1\nFOUND: instructions rule-paths .codex/rules/gameplay-code.md:2\nFOUND: instructions rule-file .codex/rules/index.md:1\nFOUND: subagents cc-path:.codex/agent-memory .codex/rules/index.md:5\nFOUND: subagents cc-path:.codex/agents .codex/rules/index.md:16\nFOUND: instructions rule-file .codex/rules/narrative.md:1\nFOUND: instructions rule-paths .codex/rules/narrative.md:2\nFOUND: instructions rule-file .codex/rules/network-code.md:1\nFOUND: instructions rule-paths .codex/rules/network-code.md:2\nFOUND: instructions rule-file .codex/rules/prototype-code.md:1\nFOUND: instructions rule-paths .codex/rules/prototype-code.md:2\nFOUND: instructions rule-file .codex/rules/scene-files.md:1\nFOUND: instructions rule-paths .codex/rules/scene-files.md:2\nFOUND: instructions rule-file .codex/rules/shader-code.md:1\nFOUND: instructions rule-paths .codex/rules/shader-code.md:2\nFOUND: instructions rule-file .codex/rules/skill-authoring.md:1\nFOUND: instructions rule-paths .codex/rules/skill-authoring.md:2\nFOUND: subagents cc-path:.codex/agents .codex/rules/skill-authoring.md:4\nFOUND: instructions rule-file .codex/rules/test-standards.md:1\nFOUND: instructions rule-paths .codex/rules/test-standards.md:2\nFOUND: instructions cc-path:.codex/rules .codex/rules/test-standards.md:36\nFOUND: instructions rule-file .codex/rules/ui-code.md:1\nFOUND: instructions rule-paths .codex/rules/ui-code.md:2\nFOUND: settings statusline-payload:model.display_name .codex/statusline.sh:44\nFOUND: settings statusline-payload:context_window.used_percentage .codex/statusline.sh:45\nFOUND: settings statusline-payload:workspace.current_dir .codex/statusline.sh:46\nFOUND: settings statusline-payload:workspace.project_dir .codex/statusline.sh:46\nFOUND: instructions AGENTS.md AGENTS.md:1\nFOUND: instructions cc-path:.codex/rules AGENTS.md:3\nFOUND: instructions shared-path:.codex/docs AGENTS.md:3\nFOUND: instructions shared-path:.codex/docs AGENTS.md:23\nFOUND: instructions shared-path:.codex/docs AGENTS.md:40\nFOUND: instructions shared-path:.codex/docs AGENTS.md:42\nFOUND: instructions shared-path:.codex/docs AGENTS.md:49\nFOUND: instructions cc-path:.codex/rules AGENTS.md:58\nFOUND: instructions shared-path:.codex/docs AGENTS.md:74\nFOUND: instructions shared-path:.codex/docs AGENTS.md:78\nFOUND: shell-lines shared-path:.codex/scripts AGENTS.md:85\nFOUND: instructions AGENTS.md design/AGENTS.md:1\nFOUND: instructions shared-path:.codex/docs design/AGENTS.md:21\nFOUND: instructions cc-path:.codex/rules design/AGENTS.md:24\nFOUND: instructions shared-path:.codex/docs design/AGENTS.md:24\nFOUND: hooks shared-path:.codex/hooks design/AGENTS.md:25\nFOUND: instructions shared-path:.codex/docs design/AGENTS.md:59\nFOUND: instructions AGENTS.md docs/AGENTS.md:1\nFOUND: instructions shared-path:.codex/docs docs/AGENTS.md:7\nFOUND: instructions AGENTS.md src/AGENTS.md:1\nFOUND: instructions AGENTS.md studio-tests/AGENTS.md:1\nFOUND: subagents cc-path:.codex/agents studio-tests/AGENTS.md:79\nFOUND: instructions shared-path:.codex/docs studio-tests/AGENTS.md:102\n"
+    },
+    {
+      "name": "helper registry.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "registry\tentities\tdesign/registry/entities.yaml\t0\nregistry\ttr\tdocs/architecture/tr-registry.yaml\t0\nregistry\tarchitecture\tdocs/registry/architecture.yaml\t0\nchecked\tproduction/epics\t0\nduplicate\t0\ntr_unknown\t0\npath_missing\t0\nstatus\t0\nlayout\t0\n"
+    },
+    {
+      "name": "helper config-set.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "file\tproject.yaml\tpresent\nenum\tok\tminimal|standard|full\nwhitelist\tlocked\tyaml-helper.sh _yaml_helper_locally_overridable\nreserved\tno\t-\nknown\tyes\tenum key\nshadow\tno\t-\ncurrent\t-\tproject.yaml\nedit\tadded-block\t33\n"
+    },
+    {
+      "name": "helper inputs-check.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "inputs\t2\nfound\t2\nempty\t0\nabsent\t0\nFOUND\tAGENTS.md\t1\tAGENTS.md\nFOUND\t.agents/skills/start/SKILL.md\t1\t.agents/skills/start/SKILL.md\n"
+    },
+    {
+      "name": "helper project-coherence.sh",
+      "passed": true,
+      "exit": 0,
+      "output": "=== project coherence ===\n[NOT CHECKED] every engine check — project.yaml has no engine.name. Run /setup-engine.\n\nchecked 0 · differs 0 · not checked 1\n\nObservations only — no verdict. 'not checked' is not agreement:\neach line above names why that comparison could not be made.\n"
+    },
+    {
+      "name": "configuration resolution",
+      "passed": true,
+      "exit": 0,
+      "output": "=== CCGS Resolved Config ===\nrigor: minimal (default)\nreview_mode: solo (rigor:minimal)\nautomation: collaborative (default)\nworkflow: minimal (rigor:minimal)\ndocs.density: terse (rigor:minimal)\nstory_granularity: coarse (rigor:minimal)\nqa.level: minimal (rigor:minimal)\nteam.size: individual (rigor:minimal)\nproject.stage: not set (unset)\nautomation_always_ask: scope_changes, file_deletions, schema_changes (default)\nengine: unset (fall back to .codex/docs/technical-preferences.md)\ntesting.strict: logic=unset integration=unset visual=unset ui=unset config=unset (unset = each skill applies its own default)\nperformance.enforce: warn (default)\nplatform.cert_tier: (unset -- ask which platforms are in scope)\nsystem_overrides: none\nnotes: none\nValues above are fully resolved (local -> yaml -> legacy -> default). Use as-is.\nAn inline --review flag, if passed, overrides review_mode.\n=== end CCGS config ===\n"
+    },
+    {
+      "name": "CLI configuration parse",
+      "passed": true,
+      "exit": 0,
+      "output": "apply_patch_freeform                under development  false\napply_patch_streaming_events        under development  false\napps                                stable             true\nartifact                            under development  false\nbrowser_use                         stable             true\nchild_agents_md                     under development  false\nchronicle                           under development  false\ncode_mode                           under development  false\ncode_mode_only                      under development  false\ncodex_git_commit                    under development  false\ncodex_hooks                         stable             true\ncollaboration_modes                 removed            true\ncomputer_use                        stable             true\ndefault_mode_request_user_input     under development  false\nelevated_windows_sandbox            removed            false\nenable_fanout                       under development  false\nenable_request_compression          stable             true\nexec_permission_approvals           under development  false\nexperimental_windows_sandbox        removed            false\nexternal_migration                  experimental       false\nfast_mode                           stable             true\ngeneral_analytics                   stable             true\nguardian_approval                   stable             true\nimage_detail_original               removed            false\nimage_generation                    stable             true\nin_app_browser                      stable             true\njs_repl                             experimental       false\njs_repl_tools_only                  under development  false\nmemories                            experimental       false\nmulti_agent                         stable             true\nmulti_agent_v2                      under development  false\npersonality                         stable             true\nplugins                             stable             true\nprevent_idle_sleep                  experimental       false\nrealtime_conversation               under development  false\nremote_control                      under development  false\nremote_models                       removed            false\nremote_plugin                       under development  false\nrequest_permissions_tool            under development  false\nrequest_rule                        removed            false\nresponses_websockets                removed            false\nresponses_websockets_v2             removed            false\nruntime_metrics                     under development  false\nsearch_tool                         removed            false\nshell_snapshot                      stable             true\nshell_tool                          stable             true\nshell_zsh_fork                      under development  false\nskill_env_var_dependency_prompt     under development  false\nskill_mcp_dependency_install        stable             true\nsqlite                              removed            true\nsteer                               removed            true\ntool_call_mcp_elicitation           stable             true\ntool_search                         stable             true\ntool_search_always_defer_mcp_tools  under development  false\ntool_suggest                        stable             true\ntui_app_server                      removed            true\nunavailable_dummy_tools             under development  false\nundo                                stable             false\nunified_exec                        stable             false\nuse_legacy_landlock                 deprecated         false\nuse_linux_sandbox_bwrap             removed            false\nweb_search_cached                   deprecated         false\nweb_search_request                  deprecated         false\nworkspace_dependencies              stable             true\nworkspace_owner_usage_nudge         under development  false\n"
+    }
+  ],
+  "shell_scripts": 52,
+  "passed": true,
+  "limitations": [
+    "No live model-driven skill runs or engine builds were performed.",
+    "Hook trust and project trust must be reviewed in the destination client."
+  ]
+}

@@ -12,13 +12,13 @@ Requirements: Python 3.11+, Git, and a local Codex client. On Windows, install G
 
 ### Option 1: Upload plugin archive
 
-In Codex desktop, choose **Add → Upload plugin archive**, then select `dist/codex-game-studios-0.1.3.zip` directly. Do not extract it or run an installer. Complete the client import/install prompts, then run `$studio-setup` in a new chat in your game workspace.
+In Codex desktop, choose **Add → Upload plugin archive**, then select `dist/codex-game-studios-0.2.0.zip` directly. Do not extract it or run an installer. Complete the client import/install prompts, then run `$studio-setup` in a new chat in your game workspace.
 
-The single-plugin ZIP has `plugin.json`, `.codex-plugin/plugin.json`, `skills/`, `hooks/`, `assets/`, `scripts/` and the complete `template/` at its root. It contains 75 skill entrypoints, 49 roles and all migrated workflows.
+The single-plugin ZIP has `plugin.json`, `.codex-plugin/plugin.json`, `skills/`, `hooks/`, `assets/`, `scripts/` and shared resources in `framework/` at its root. It contains 75 skill entrypoints, 49 roles and all migrated workflows.
 
 ### Option 2: Add plugin marketplace
 
-Extract `dist/codex-game-studios-marketplace-0.1.3.zip`. Open **Add → Add plugin marketplace** and fill its three text fields:
+Extract `dist/codex-game-studios-marketplace-0.2.0.zip`. Open **Add → Add plugin marketplace** and fill its three text fields:
 
 | Field | Local installation on this machine |
 | --- | --- |
@@ -51,7 +51,7 @@ codex plugin marketplace add wyx135230/Codex-Game-Studios --ref main --sparse .a
 
 CLI users can run `codex plugin marketplace add <absolute-marketplace-directory>`, then install through `/plugins`. The marketplace ZIP must be extracted and added as a catalog; upload the separate single-plugin ZIP through the archive uploader.
 
-Review and trust hooks when prompted. Setup initializes writable game files only when invoked and preserves existing files. The plugin requires local execution in Codex desktop/CLI. Private installation is separate from public directory submission; public submissions currently cannot contain lifecycle hooks.
+Review and trust hooks when prompted. Setup binds the workspace without copying skills, roles, templates or common scripts. Existing project configuration is preserved. The plugin requires local execution in Codex desktop/CLI. Private installation is separate from public directory submission; public submissions currently cannot contain lifecycle hooks.
 
 Packaging follows the [official guide](https://developers.openai.com/plugins/build/plugins) and [icon requirements](https://developers.openai.com/plugins/deploy/submission#icons-and-screenshots). Offline validation and CLI registration do not establish that the desktop upload UI has been exercised.
 
@@ -77,7 +77,7 @@ The Windows launcher opens the plugin detail link. Restart Codex desktop and loo
 $studio-setup
 ```
 
-Codex requires explicit trust for plugin hooks. The installer does not bypass that requirement. Installation does not modify your game project. Setup fills missing template files, preserves existing files and reports them. Review preserved conflicts and read `STUDIO.md`.
+Codex requires explicit trust for plugin hooks. The installer does not bypass that requirement. Installation does not modify your game project. Setup only binds configuration and a short instruction bridge. Existing instructions are preserved outside the marked plugin section.
 
 In the CLI, use `/plugins` to select the local marketplace. CLI plugin subcommands vary by release; the installed CLI 0.125 only exposes `plugin marketplace`, so these scripts do not depend on the newer `codex plugin add` command.
 
@@ -95,9 +95,38 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\uninstall.ps1
 
 On other platforms use `python3 scripts/plugin_manager.py uninstall`. This removes the owned plugin source, marketplace entry and marked configuration block. Restart Codex afterwards. **Game workspaces, source code, design documents and session data are preserved.** If Codex still shows a cached installed entry, uninstall it through its plugin detail page. The script does not recursively delete shared Codex caches.
 
-You can also disable or uninstall through the desktop plugin page. For script installations, run the uninstall script to remove the local source registration as well. To upgrade: uninstall the old package, extract the new version and install it. Existing workspace template files are not overwritten automatically; review migration changes before updating them.
+You can also disable or uninstall through the desktop plugin page. For script installations, run the uninstall script to remove the local source registration as well. To upgrade: uninstall the old package, extract the new version and install it. Run `$studio-setup` from the new plugin to refresh the binding. Project artifacts remain intact; preview legacy cleanup before applying it.
 
 `python scripts/plugin_manager.py status` reports local source state. `--home <directory>` selects an isolated user home containing `.codex` and `.agents`, useful for testing. If the marked configuration block has been manually changed, uninstall stops with an explanation rather than deleting edited settings.
+
+## 0.2.0: installed resources, minimal workspaces
+
+The plugin `skills/` directory contains all 74 full workflows and references, plus onboarding. Roles, rules, templates and helpers remain in plugin `framework/`. There is no second skill library in the game workspace.
+
+Initial setup of a new project creates only:
+
+```text
+AGENTS.md                    # Short plugin instruction bridge
+project.yaml                 # Game configuration
+.studio/installation.json    # Binding, version and ownership record
+```
+
+If `AGENTS.override.md` exists, update that effective instruction file instead. Existing instructions are retained outside the marked studio section; existing project.yaml is preserved. Setup creates no STUDIO.md, .agents/skills, project .codex directory, shared scripts, README, license or GitHub configuration copies, and no directory links.
+
+Game designs, code, assets, tests, engine references and production records are created only by workflows that need them. Mutable legacy preferences and role memory use `.studio/technical-preferences.md` and `.studio/agent-memory/` when needed. Hooks may write project session records.
+
+Use plugin-owned role contracts and compatibility metadata with generic child agents if named roles are unavailable. No per-project copies of 49 agent configurations are generated. Disclose sequential fallback when child-agent tools are unavailable.
+
+For a 0.1.x workspace, run `$studio-setup` from the updated plugin, then preview cleanup:
+
+```bash
+python "<plugin-root>/scripts/plugin_workspace.py" cleanup --root "<game-directory>"
+python "<plugin-root>/scripts/plugin_workspace.py" cleanup --root "<game-directory>" --apply
+```
+
+Only unchanged, ledger-owned skill/framework files, studio tests, common runtime scripts and old STUDIO.md are eligible. Edited files, role memory and game artifacts stay. Other categories such as old README copies stay too. Without ownership records nothing is guessed or recursively removed.
+
+Uninstalling retains game artifacts; plugin workflows require reinstalling/enabling the plugin. Setup or a trusted plugin hook refreshes the binding when a host update moves its versioned cache.
 
 ## Use the repository as a project template
 
@@ -109,7 +138,7 @@ python scripts/studio.py doctor
 
 Ask Codex to run `$start`. Root `AGENTS.md` provides project guidance; `.agents/skills/` contains workflows and `.codex/agents/` contains native roles. The default `.codex/config.toml` uses role registration verified with CLI 0.125. `.codex/config.modern.toml` is provided for newer standalone-agent clients; do not apply it blindly to an older CLI.
 
-Choose either the plugin or the direct project template. Plugin workflows execute against workspace copies, so the plugin cache stays separate from game data and project hooks are not registered twice.
+Choose either the plugin or the direct project template. Plugin workflows and references run from the installed package. The source-template mode keeps its local workflow library for development; the plugin does not copy that library into games.
 
 ## From concept to release
 
@@ -140,11 +169,11 @@ $settings --local modes.automation=guided
 
 All roles inherit the selected Codex model. Original Anthropic aliases and tool metadata remain under `.codex/compat/` for auditing; they do not imply automatic model switches, tool isolation or enforced turn limits. Tool scope, budgets and project memory are handled in workflow briefs and the runtime contract.
 
-`AGENTS.md`, `STUDIO.md` and `.codex/docs/runtime.md` define the runtime contract. `.codex/rules/index.md` routes applicable rules. Claude-style `@` imports, automatic path-rule loading and skill shell injection have been converted into explicit reads and commands.
+In plugin mode a short project AGENTS bridge reads `.studio/installation.json` and the installed `framework/PLUGIN_RUNTIME.md`; rules stay under plugin `framework/.codex/rules/`. Source-template mode still uses `.codex/docs/runtime.md` and `.codex/rules/index.md`. Claude-style `@` imports, automatic path-rule loading and skill shell injection have been converted into explicit reads and commands.
 
 Session recovery reads `production/session-state/active.md`. The adapter preserves commit checks, registry protection, write guards, asset checks, bounded-read checks, agent logs and artifact validation. Codex `apply_patch` additions, updates, deletions, moves and multi-file patches are checked per file.
 
-Without native hooks, use explicit lifecycle commands:
+Without native hooks, use explicit lifecycle commands. These examples are for source-template mode; in plugin mode use the installed studio.py absolute path and run from the game workspace:
 
 ```bash
 python scripts/studio.py hook SessionStart
@@ -157,7 +186,7 @@ For tool checks use `hook PreToolUse --payload payload.json` and `hook PostToolU
 
 ## Verify and build
 
-Run these commands from the source repository root. Initialized game workspaces can run `doctor` and the runtime tests.
+Run these commands from the source repository root. Bound game workspaces use the installed `scripts/studio.py doctor`; framework tests stay in the source repository.
 
 ```bash
 python -m unittest discover -s tests -v

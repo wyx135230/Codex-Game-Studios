@@ -3,20 +3,74 @@ name: test-setup
 description: "Scaffold the test framework and CI — tests/ directory, engine test runner, GitHub Actions workflow. Once, before the first sprint."
 ---
 
-# test-setup — plugin entrypoint
+## Installed plugin binding
 
-The complete workflow and references are bundled in `template/.agents/skills/test-setup/`.
-Locate this plugin root from the loaded SKILL.md path (two parent directories above `skills/`).
-Use that absolute path in commands; do not assume the shell expands a PLUGIN_ROOT variable.
-First choose the current game workspace from the user's task. If no workspace is available,
-ask for its path. Run `python "<plugin-root>/scripts/plugin_workspace.py" init --root "<workspace>"`.
-This fills missing template files and preserves existing ones. Inspect any preserved conflicts.
-If the result says `initialized: true`, run `python scripts/studio.py hook SessionStart` from
-the workspace once, since the native start event preceded initialization.
-Read `<workspace>/STUDIO.md`, `<workspace>/.codex/docs/runtime.md`, applicable AGENTS.md and rules.
-Then read `<workspace>/.agents/skills/test-setup/SKILL.md` and follow ALL phases and referenced
-files with the user's original arguments, from the workspace root. Do not invoke this wrapper recursively.
-Hooks come from the plugin. On clients without hooks, use explicit lifecycle commands.
-Roles are in workspace `.codex/agents/*.toml` (legacy registered role configs are also bundled).
-If a named role is unavailable, give its full `.md` role contract to a generic child agent;
-if no child tools exist, execute sequentially and disclose that limitation.
+Resolve this installed plugin root from this skill path. Read `<plugin-root>/framework/PLUGIN_RUNTIME.md`
+and run its minimal workspace binding before the workflow below. Execute from the game workspace,
+read references from this installed skill directory, and keep all framework files in the plugin.
+This skill contains the full workflow; do not create or invoke a workspace skill copy.
+
+Read `<plugin-root>/framework/.codex/docs/runtime.md` before executing this workflow. Arguments are the text following the skill invocation; substitute them where `$ARGUMENTS` appears.
+
+Before proceeding, run this command from the repository root and use its output:
+
+```bash
+bash "<plugin-root>/framework/.codex/hooks/yaml-helper.sh" resolve_config --keys automation,workflow,qa.level
+```
+
+**Automation mode**: Resolve `modes.automation` (`project.local.yaml` →
+`project.yaml` → default `collaborative`). Every `AskUserQuestion` call and
+every file write follows `<plugin-root>/framework/.codex/docs/automation-modes.md`
+(collaborative asks always · guided major-only · autonomous logs and proceeds;
+`automation_always_ask` categories always prompt).
+
+# Test Setup
+
+This skill scaffolds the automated testing infrastructure for the project.
+It detects the configured engine, generates the appropriate test runner
+configuration, creates the standard directory layout, and wires up CI/CD
+so tests run on every push.
+
+Run this once during the Technical Setup phase, before any implementation
+begins. A test framework installed at sprint start costs 30 minutes.
+A test framework installed at sprint four costs 3 sprints.
+
+**Output:** `tests/` directory structure + `.github/workflows/tests.yml`
+
+---
+
+## Phase 1: Detect Engine and Existing State
+
+**Read `references/1-detect.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 2: Present Plan
+
+**Read `references/2-plan.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 3: Create Directory Structure
+
+**Read `references/3-directories.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 4: Create CI/CD Workflow
+
+**Read `references/4-ci.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 5: Create Smoke Test Seed
+
+**Read `references/5-smoke-seed.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Phase 6: Post-Setup Summary
+
+**Read `references/6-summary.md` now and follow it** — this phase's steps are in that file, not here. Read it again if the conversation was compacted or resumed during this phase.
+
+## Collaborative Protocol
+
+- **Never overwrite existing test files** — only create files that are missing.
+  If a test runner file exists, leave it as-is.
+- **Always ask before creating files** — Phase 2 requires explicit approval.
+- **Engine detection is non-negotiable** — if the engine is not configured,
+  stop and redirect to `/setup-engine`. Do not guess.
+- **`force` flag skips the "already exists" early-exit but never overwrites.**
+  It means "create any missing files even if the directory already exists."
+- For Unity CI, note that the `UNITY_LICENSE` secret must be configured
+  manually. Do not attempt to automate license management.

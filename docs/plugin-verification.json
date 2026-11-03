@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.2.0",
   "passed": true,
   "checks": [
     {
@@ -50,12 +50,12 @@
     {
       "name": "installed workspace doctor",
       "passed": true,
-      "detail": "{\n  \"python\": \"3.12.0\",\n  \"bash\": \"E:\\\\Git\\\\bin\\\\bash.exe\",\n  \"skills\": 74,\n  \"agents\": 49,\n  \"status\": \"ok\"\n}\n"
+      "detail": "{\n  \"python\": \"3.12.0\",\n  \"bash\": \"E:\\\\Git\\\\bin\\\\bash.exe\",\n  \"skills\": 75,\n  \"agents\": 49,\n  \"status\": \"ok\"\n}\n"
     },
     {
-      "name": "installed workspace tests",
+      "name": "minimal initial project footprint",
       "passed": true,
-      "detail": "test_all_patch_files_validated (test_runtime.HookTests.test_all_patch_files_validated) ... ok\ntest_cli_denial_uses_native_json (test_runtime.HookTests.test_cli_denial_uses_native_json) ... ok\ntest_cli_post_failure_uses_native_feedback (test_runtime.HookTests.test_cli_post_failure_uses_native_feedback) ... ok\ntest_context_forwarded (test_runtime.HookTests.test_context_forwarded) ... ok\ntest_exec_command_normalized_and_denial_forwarded (test_runtime.HookTests.test_exec_command_normalized_and_denial_forwarded) ... ok\ntest_sensitive_files (test_runtime.HookTests.test_sensitive_files) ... ok\ntest_shell_policy (test_runtime.HookTests.test_shell_policy) ... ok\ntest_all_source_files_accounted_for (test_runtime.InventoryTests.test_all_source_files_accounted_for) ... ok\ntest_hooks_are_native_supported_events (test_runtime.InventoryTests.test_hooks_are_native_supported_events) ... ok\ntest_native_roles_match_all_original_roles (test_runtime.InventoryTests.test_native_roles_match_all_original_roles) ... ok\ntest_native_skills_have_no_implicit_shell_injection (test_runtime.InventoryTests.test_native_skills_have_no_implicit_shell_injection) ... ok\ntest_hunk_anchor_selects_correct_duplicate_context (test_runtime.PatchTests.test_hunk_anchor_selects_correct_duplicate_context) ... ok\ntest_invalid_patch_fails (test_runtime.PatchTests.test_invalid_patch_fails) ... ok\ntest_move_checks_source_and_destination (test_runtime.PatchTests.test_move_checks_source_and_destination) ... ok\ntest_multifile_add_update_delete (test_runtime.PatchTests.test_multifile_add_update_delete) ... ok\ntest_post_reads_actual_content (test_runtime.PatchTests.test_post_reads_actual_content) ... ok\ntest_reject_escape (test_runtime.PatchTests.test_reject_escape) ... ok\ntest_reject_symlink_escape (test_runtime.PatchTests.test_reject_symlink_escape) ... skipped 'symlink creation unavailable'\n\n----------------------------------------------------------------------\nRan 18 tests in 0.505s\n\nOK (skipped=1)\n"
+      "detail": ""
     },
     {
       "name": "installed native hook adapter",
@@ -75,7 +75,7 @@
     {
       "name": "native CLI marketplace registration",
       "passed": true,
-      "detail": "Added marketplace `local-game-studios` from \\\\?\\C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-xh4bqqop\\home.\nInstalled marketplace root: \\\\?\\C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-xh4bqqop\\home\n"
+      "detail": "Added marketplace `local-game-studios` from \\\\?\\C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-kjeg047g\\home.\nInstalled marketplace root: \\\\?\\C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-kjeg047g\\home\n"
     },
     {
       "name": "native distribution marketplace registration",
@@ -100,7 +100,7 @@
     {
       "name": "PowerShell install launcher",
       "passed": true,
-      "detail": "\n\nstatus      : installed\npath        : C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-xh4bqqop\\powershell-home\\.codex\\plugins\\loc\n              al-source\\codex-game-studios\nmarketplace : C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-xh4bqqop\\powershell-home\\.agents\\plugins\\ma\n              rketplace.json\nopen        : codex://plugins/codex-game-studios?marketplacePath=C%3A%5CUsers%5CLENOVO%5CAppData%5CLocal%5CTemp%5Cstudi\n              o-plugin-verification-xh4bqqop%5Cpowershell-home%5C.agents%5Cplugins%5Cmarketplace.json\n\n\n\nRestart Codex, review the plugin and trust its hooks. Run $studio-setup in your game workspace.\n"
+      "detail": "\n\nstatus      : installed\npath        : C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-kjeg047g\\powershell-home\\.codex\\plugins\\loc\n              al-source\\codex-game-studios\nmarketplace : C:\\Users\\LENOVO\\AppData\\Local\\Temp\\studio-plugin-verification-kjeg047g\\powershell-home\\.agents\\plugins\\ma\n              rketplace.json\nopen        : codex://plugins/codex-game-studios?marketplacePath=C%3A%5CUsers%5CLENOVO%5CAppData%5CLocal%5CTemp%5Cstudi\n              o-plugin-verification-kjeg047g%5Cpowershell-home%5C.agents%5Cplugins%5Cmarketplace.json\n\n\n\nRestart Codex, review the plugin and trust its hooks. Run $studio-setup in your game workspace.\n"
     },
     {
       "name": "PowerShell uninstall launcher",

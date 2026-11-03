@@ -10,7 +10,10 @@ import subprocess
 import sys
 import tomllib
 
-ROOT = Path(__file__).resolve().parents[1]
+PACKAGE_ROOT = Path(__file__).resolve().parents[1]
+FRAMEWORK = PACKAGE_ROOT / 'framework' if (PACKAGE_ROOT / 'framework').is_dir() else PACKAGE_ROOT
+ROOT = Path(os.environ.get('STUDIO_PROJECT_DIR') or (Path.cwd() if FRAMEWORK != PACKAGE_ROOT else PACKAGE_ROOT)).resolve()
+SKILLS = PACKAGE_ROOT / 'skills' if FRAMEWORK != PACKAGE_ROOT else ROOT / '.agents/skills'
 
 
 def bash_path():
@@ -33,10 +36,14 @@ def bash_path():
 
 
 def shell(script, args=(), payload=None, timeout=60):
-    env = dict(os.environ, STUDIO_PROJECT_DIR=str(ROOT), PYTHONUTF8='1')
+    env = dict(os.environ, STUDIO_PROJECT_DIR=ROOT.as_posix(),
+               STUDIO_FRAMEWORK_ROOT=FRAMEWORK.as_posix(), STUDIO_SKILLS_ROOT=SKILLS.as_posix(), PYTHONUTF8='1')
     exe = bash_path()
     env['PATH'] = str(Path(exe).parent) + os.pathsep + env.get('PATH', '')
-    return subprocess.run([exe, str(ROOT / script), *args], cwd=ROOT,
+    target = (FRAMEWORK / script).resolve()
+    if not target.is_relative_to(FRAMEWORK.resolve()):
+        raise ValueError('helper path escapes installed framework')
+    return subprocess.run([exe, str(target), *args], cwd=ROOT,
                           input=json.dumps(payload) if payload is not None else None,
                           capture_output=True, text=True, encoding='utf-8', errors='replace',
                           env=env, timeout=timeout)
@@ -123,7 +130,7 @@ def patch_files(patch, post=False):
 
 def policy(tool, inputs):
     """Apply the original deny contract; this is a guardrail, not an OS sandbox."""
-    settings = json.loads((ROOT / '.codex/compat/upstream-settings.json').read_text())
+    settings = json.loads((FRAMEWORK / '.codex/compat/upstream-settings.json').read_text())
     if tool in ('Bash', 'PowerShell'):
         command = inputs.get('command', inputs.get('cmd', ''))
         for item in settings['permissions']['deny']:
@@ -156,7 +163,7 @@ def hook(event, data):
     if event == 'PreToolUse':
         for payload in payloads:
             policy(payload['tool_name'], payload['tool_input'])
-    specs = json.loads((ROOT / '.codex/compat/upstream-settings.json').read_text())['hooks']
+    specs = json.loads((FRAMEWORK / '.codex/compat/upstream-settings.json').read_text())['hooks']
     if event == 'PermissionRequest':
         specs_for_event = specs['Notification']
         payloads = [dict(data, notification_type='permission_prompt')]
@@ -215,9 +222,9 @@ def doctor():
                            capture_output=True, text=True, timeout=20)
     if probe.returncode:
         raise RuntimeError('incomplete Bash tools: ' + probe.stderr)
-    skills = list((ROOT / '.agents/skills').glob('*/SKILL.md'))
-    agents = list((ROOT / '.codex/agents').glob('*.toml'))
-    tomllib.loads((ROOT / '.codex/config.toml').read_text())
+    skills = list(SKILLS.glob('*/SKILL.md'))
+    agents = list((FRAMEWORK / '.codex/agents').glob('*.toml'))
+    tomllib.loads((FRAMEWORK / '.codex/config.toml').read_text())
     for file in agents:
         obj = tomllib.loads(file.read_text(encoding='utf-8'))
         assert all(obj.get(k) for k in ('name', 'description', 'developer_instructions')), file
@@ -233,6 +240,9 @@ def main():
     runner = sub.add_parser('run')
     runner.add_argument('helper')
     runner.add_argument('args', nargs=argparse.REMAINDER)
+    helper = sub.add_parser('helper')
+    helper.add_argument('path')
+    helper.add_argument('args', nargs=argparse.REMAINDER)
     ev = sub.add_parser('hook')
     ev.add_argument('event')
     ev.add_argument('--payload', type=Path)
@@ -242,13 +252,20 @@ def main():
         if args.command == 'doctor':
             doctor()
         elif args.command == 'list':
-            for file in sorted((ROOT / '.agents/skills').glob('*/SKILL.md')):
+            for file in sorted(SKILLS.glob('*/SKILL.md')):
                 print('$' + file.parent.name)
+        elif args.command == 'helper':
+            path = Path(args.path)
+            if path.is_absolute() or '..' in path.parts or path.suffix != '.sh':
+                raise ValueError('use a relative installed shell helper path')
+            result = shell(args.path, args.args, timeout=3600)
+            print(result.stdout, end=''); print(result.stderr, end='', file=sys.stderr)
+            return result.returncode
         elif args.command == 'run':
             if Path(args.helper).name != args.helper:
                 raise ValueError('use a helper basename from .codex/scripts')
             file = '.codex/scripts/' + args.helper
-            if not (ROOT / file).is_file():
+            if not (FRAMEWORK / file).is_file():
                 raise ValueError('unknown helper: ' + args.helper)
             result = shell(file, args.args, timeout=3600)
             print(result.stdout, end=''); print(result.stderr, end='', file=sys.stderr)

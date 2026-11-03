@@ -87,6 +87,37 @@ class InstallerTests(unittest.TestCase):
 
 
 class WorkspaceTests(unittest.TestCase):
+    def test_setup_keeps_framework_in_plugin_and_creates_only_three_project_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            template = base / 'framework'
+            (template / '.agents/skills/start').mkdir(parents=True)
+            (template / '.agents/skills/start/SKILL.md').write_text('workflow')
+            (template / 'AGENTS.md').write_text('long framework contract')
+            (template / 'project.yaml').write_text('schema_version: 1\n')
+            root = base / 'game'
+            workspace.initialize(root, template)
+            files = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()}
+            self.assertEqual(files, {'AGENTS.md', 'project.yaml', '.studio/installation.json'})
+            self.assertIn('codex-game-studios', (root / 'AGENTS.md').read_text())
+
+    def test_setup_adds_small_managed_bridge_to_existing_instructions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            template = base / 'framework'
+            template.mkdir()
+            (template / 'project.yaml').write_text('schema_version: 1\n')
+            root = base / 'game'
+            root.mkdir()
+            original = b'# My project\r\nKeep my rules.\r\n'
+            (root / 'AGENTS.md').write_bytes(original)
+            workspace.initialize(root, template)
+            first = (root / 'AGENTS.md').read_bytes()
+            workspace.initialize(root, template)
+            self.assertTrue(first.startswith(original))
+            self.assertIn(b'<!-- codex-game-studios:begin -->', first)
+            self.assertEqual(first, (root / 'AGENTS.md').read_bytes())
+
     def test_initialize_idempotent_and_preserves_existing_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
@@ -101,9 +132,9 @@ class WorkspaceTests(unittest.TestCase):
             (root / 'project.yaml').write_text('my engine settings')
             first = workspace.initialize(root, template)
             second = workspace.initialize(root, template)
-            self.assertEqual((root / 'AGENTS.md').read_text(), 'my instructions')
+            self.assertTrue((root / 'AGENTS.md').read_text().startswith('my instructions'))
             self.assertEqual((root / 'project.yaml').read_text(), 'my engine settings')
-            self.assertEqual((root / 'STUDIO.md').read_text(), 'studio instructions')
+            self.assertFalse((root / 'STUDIO.md').exists())
             self.assertFalse((root / '.codex/hooks.json').exists())
             self.assertEqual(second['created'], [])
             self.assertIn('project.yaml', first['preserved'])

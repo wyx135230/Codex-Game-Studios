@@ -4,10 +4,11 @@ import hashlib
 import json
 import shutil
 import zipfile
+from plugin_layout import populate
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = 'codex-game-studios'
-VERSION = '0.1.3'
+VERSION = '0.2.0'
 
 
 def write(path, text):
@@ -46,69 +47,13 @@ def build():
               'skills': './skills/', 'interface': interface, 'hooks': './hooks/hooks.json',
               'extensions': {'com.openai': {'onboardingSkill': './skills/studio-setup/SKILL.md'}}}
     write(package / '.codex-plugin/plugin.json', json.dumps(legacy, indent=2) + '\n')
-    for folder in ('.agents/skills', '.codex', '.github', 'design', 'docs', 'production', 'src', 'studio-tests'):
-        shutil.copytree(ROOT / folder, package / 'template' / folder,
-                        ignore=shutil.ignore_patterns('__pycache__', '*.pyc', 'session-logs', 'active.md', 'plugin-verification.json', 'distribution-verification.json'))
-    (package / 'template/tests').mkdir(parents=True)
-    shutil.copyfile(ROOT / 'tests/test_runtime.py', package / 'template/tests/test_runtime.py')
-    for name in ('AGENTS.md', 'project.yaml', 'LICENSE', '.gitignore', '.gitattributes', '.worktreeinclude', 'README.md', 'README.en.md', 'CONTRIBUTING.md', 'SECURITY.md'):
-        if (ROOT / name).exists():
-            shutil.copyfile(ROOT / name, package / 'template' / name)
-    (package / 'template/scripts').mkdir(parents=True, exist_ok=True)
-    for name in ('studio.py', 'probe_codex.py', 'verify.py'):
-        shutil.copyfile(ROOT / 'scripts' / name, package / 'template/scripts' / name)
-    (package / 'scripts').mkdir(parents=True, exist_ok=True)
-    for name in ('plugin_workspace.py', 'plugin_hook.py'):
-        shutil.copyfile(ROOT / 'scripts' / name, package / 'scripts' / name)
-    for file in sorted((ROOT / '.agents/skills').glob('*/SKILL.md')):
-        text = file.read_text(encoding='utf-8')
-        front = text.split('---', 2)[1]
-        body = f'''# {file.parent.name} — plugin entrypoint
-
-The complete workflow and references are bundled in `template/.agents/skills/{file.parent.name}/`.
-Locate this plugin root from the loaded SKILL.md path (two parent directories above `skills/`).
-Use that absolute path in commands; do not assume the shell expands a PLUGIN_ROOT variable.
-First choose the current game workspace from the user's task. If no workspace is available,
-ask for its path. Run `python "<plugin-root>/scripts/plugin_workspace.py" init --root "<workspace>"`.
-This fills missing template files and preserves existing ones. Inspect any preserved conflicts.
-If the result says `initialized: true`, run `python scripts/studio.py hook SessionStart` from
-the workspace once, since the native start event preceded initialization.
-Read `<workspace>/STUDIO.md`, `<workspace>/.codex/docs/runtime.md`, applicable AGENTS.md and rules.
-Then read `<workspace>/.agents/skills/{file.parent.name}/SKILL.md` and follow ALL phases and referenced
-files with the user's original arguments, from the workspace root. Do not invoke this wrapper recursively.
-Hooks come from the plugin. On clients without hooks, use explicit lifecycle commands.
-Roles are in workspace `.codex/agents/*.toml` (legacy registered role configs are also bundled).
-If a named role is unavailable, give its full `.md` role contract to a generic child agent;
-if no child tools exist, execute sequentially and disclose that limitation.
-'''
-        write(package / 'skills' / file.parent.name / 'SKILL.md', '---' + front + '---\n\n' + body)
-        metadata = file.parent / 'agents/openai.yaml'
-        if metadata.exists():
-            target = package / 'skills' / file.parent.name / 'agents/openai.yaml'
-            write(target, metadata.read_text(encoding='utf-8'))
-    write(package / 'skills/studio-setup/SKILL.md', '''---
-name: studio-setup
-description: Initialize a writable game workspace using the complete Codex Game Studios plugin template.
----
-
-Locate this plugin root from this skill file. Use the workspace already selected in Codex;
-ask for a directory only if none is known. Run `python "<plugin-root>/scripts/plugin_workspace.py"
-init --root "<workspace>"`. Read the result and preserved-file list, then read workspace
-STUDIO.md, AGENTS.md and .codex/docs/runtime.md. Run `python scripts/studio.py doctor` from
-the workspace. If newly initialized, run `python scripts/studio.py hook SessionStart` once.
-Read and follow .agents/skills/start/SKILL.md for onboarding. All 74 original
-workflows are available; consult docs/CATALOG.md. No network service or API key is required
-by this plugin beyond the normal Codex sign-in. Existing project files are preserved.
-''')
+    populate(ROOT, package, write)
     events = ('SessionStart', 'PreToolUse', 'PostToolUse', 'PermissionRequest', 'PreCompact', 'Stop', 'SubagentStart', 'SubagentStop')
     hooks = {'hooks': {ev: [{'matcher': '', 'hooks': [{'type': 'command',
           'command': f'python3 "${{PLUGIN_ROOT}}/scripts/plugin_hook.py" {ev}',
           'commandWindows': 'python -c "import os,runpy,sys; sys.argv=[\'plugin_hook.py\',\'' + ev + '\']; runpy.run_path(os.path.join(os.environ[\'PLUGIN_ROOT\'],\'scripts\',\'plugin_hook.py\'),run_name=\'__main__\')"', 'timeout': 120}]}] for ev in events}}
     write(package / 'hooks/hooks.json', json.dumps(hooks, indent=2) + '\n')
     shutil.copyfile(ROOT / 'LICENSE', package / 'LICENSE')
-    shutil.copytree(ROOT / 'docs', package / 'docs', ignore=shutil.ignore_patterns('plugin-verification.json', 'distribution-verification.json'))
-    catalog = package / 'docs/CATALOG.md'
-    write(catalog, catalog.read_text(encoding='utf-8').replace('../.agents/', '../template/.agents/').replace('../.codex/', '../template/.codex/'))
     for name in ('README.md', 'README.en.md'):
         if (ROOT / name).exists():
             shutil.copyfile(ROOT / name, package / name)
@@ -127,7 +72,7 @@ by this plugin beyond the normal Codex sign-in. Existing project files are prese
         assert z.testzip() is None
         assert 'plugin.json' in z.namelist()
         assert len([p for p in z.namelist() if p.startswith('skills/') and p.endswith('/SKILL.md')]) == 75
-        assert 'template/.codex/agents/creative-director.toml' in z.namelist()
+        assert 'framework/.codex/agents/creative-director.toml' in z.namelist()
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     write(archive.with_suffix('.zip.sha256'), digest + '  ' + archive.name + '\n')
     # A separate market root contains no project-level hooks or instructions. Adding it
@@ -175,7 +120,7 @@ After installation run `$studio-setup` in a game workspace. Uninstall through th
     write(market_archive.with_suffix('.zip.sha256'), market_digest + '  ' + market_archive.name + '\n')
     print(json.dumps({'archive': str(archive), 'sha256': digest, 'skills': 75,
                       'marketplace_directory': str(market_root), 'marketplace_archive': str(market_archive),
-                      'template_roles': 49, 'size_bytes': archive.stat().st_size}, indent=2))
+                      'bundled_roles': 49, 'size_bytes': archive.stat().st_size}, indent=2))
 
 
 if __name__ == '__main__':
